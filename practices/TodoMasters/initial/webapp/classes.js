@@ -56,8 +56,8 @@ export class TodoList {
     return array.some(target => target.text === text)
   }
 
-  replaceList(list) {
-    this.#data = list
+  replaceList(set) {
+    this.#data = set
     this.notify()
   }
 }

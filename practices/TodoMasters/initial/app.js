@@ -1,5 +1,6 @@
 import { TodoList } from "./webapp/classes.js";
 import { Command, CommandExecutor, Commands } from "./webapp/command.js";
+import { LocalStorage } from "./webapp/storage.js";
 
 globalThis.DOM = {} // globalThis=window in browser
 const DOM = globalThis.DOM;
@@ -36,4 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
   TodoList.getInstance().addObserver(renderList)
+})
+
+document.addEventListener('DOMContentLoaded', () => {
+  LocalStorage.load()
 })
