@@ -51,4 +51,9 @@ document.addEventListener('keydown', e => {
     e.preventDefault();
     addTodo()
   }
+
+  if (e.ctrlKey && e.key === 'z') {
+    const cmd = new Command(Commands.UNDO)
+    CommandExecutor.execute(cmd)
+  }
 })
