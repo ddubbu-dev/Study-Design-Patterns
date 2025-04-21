@@ -18,15 +18,18 @@ function renderList() {
   }
 }
 
+function addTodo() {
+  const cmd = new Command(Commands.ADD)
+  CommandExecutor.execute(cmd)
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
   DOM.todoList = document.getElementById('todo-list')
   DOM.addBtn = document.getElementById('add-btn')
   DOM.todoInput = document.getElementById('todo-input')
 
-  DOM.addBtn.addEventListener('click', e => {
-    const cmd = new Command(Commands.ADD)
-    CommandExecutor.execute(cmd)
-  })
+  DOM.addBtn.addEventListener('click', addTodo)
 
   DOM.todoList.addEventListener('click', e => {
     if (e.target.classList.contains('delete-btn')) {
@@ -41,4 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   LocalStorage.load()
+})
+
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey && e.key === 'p') || (e.key === 'Enter')) {
+    e.preventDefault();
+    addTodo()
+  }
 })
