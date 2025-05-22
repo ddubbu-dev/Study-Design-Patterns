@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "run": "ts-node",
-    "test": "jest"
+    "ts-node": "ts-node",
+    "test": "jest",
+    "test:global": "jest --runInBand"
   },
   "keywords": [],
   "author": "",

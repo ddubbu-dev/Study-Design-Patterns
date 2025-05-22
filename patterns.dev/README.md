@@ -3,12 +3,18 @@ https://patterns-dev-kr.github.io/design-patterns/singleton-pattern/
 ```bash
 $ pnpm i
 $ pnpm test  // 테스트 실행
-$ pnpm run {file_name}.ts  // 파일 실행
+$ pnpm ts-node -- {file_name}  // 파일 실행
 ```
 
 # 시행착오
 
 ### Singleton
+
+[object literal 방식]
+
+```bash
+$ pnpm ts-node -- src/singleton-run-1
+```
 
 [초기화 유의] : RangeError: Maximum call stack size exceeded
 

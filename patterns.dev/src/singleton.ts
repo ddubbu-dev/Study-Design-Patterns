@@ -1,3 +1,4 @@
+// 1. class 선언 방식
 export class Counter {
   static #instance: Counter | null = null;
   #count = 0;
@@ -32,3 +33,19 @@ export class Counter {
     return --this.#count;
   }
 }
+
+// 2. Object Literal 선언
+let count = 0;
+export const counter = {
+  getCount() {
+    return count;
+  },
+  increment() {
+    return ++count;
+  },
+  decrement() {
+    return ++count;
+  },
+};
+
+Object.freeze(counter);
