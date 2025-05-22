@@ -180,3 +180,9 @@ function App() {
   );
 }
 ```
+
+### Flyweight 패턴
+
+---
+
+- UseCase: 공통 속성은 공유
