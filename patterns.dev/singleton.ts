@@ -1,14 +1,23 @@
 class Counter {
-  static instance: Counter | null = null;
+  static #instance: Counter | null = null;
   #count = 0;
 
-  static {
-    this.instance = new Counter();
-  }
-  constructor() {
-    // 첫번째 호출 시 원시값(null)이라, this 반환
-    // 두번째 호출 시 객체 명시되어 유효한 값 반환
-    return Counter.instance;
+  // WARN! 무한 재귀 발생
+  //   constructor() {
+  //     if (!Counter.#instance) {
+  //       Counter.#instance = new Counter();
+  //     }
+  //     return Counter.#instance;
+  //   }
+
+  private constructor() {}
+
+  // NOTE! new keyword가 아닌 getInstance 사용 유도
+  static getInstance() {
+    if (!Counter.#instance) {
+      Counter.#instance = new Counter();
+    }
+    return Counter.#instance;
   }
 
   getCount() {
@@ -24,7 +33,12 @@ class Counter {
   }
 }
 
-const counter1 = new Counter();
-const counter2 = new Counter();
-console.log("counter1", counter1);
-console.log(counter1 == counter2);
+const counter1 = Counter.getInstance();
+const counter2 = Counter.getInstance();
+
+console.log(counter1 == counter2); // true
+
+counter1.increment();
+counter2.increment();
+
+console.log(counter1.getCount() == 2); // true
