@@ -1,4 +1,4 @@
-class Counter {
+export class Counter {
   static #instance: Counter | null = null;
   #count = 0;
 
@@ -32,13 +32,3 @@ class Counter {
     return --this.#count;
   }
 }
-
-const counter1 = Counter.getInstance();
-const counter2 = Counter.getInstance();
-
-console.log(counter1 == counter2); // true
-
-counter1.increment();
-counter2.increment();
-
-console.log(counter1.getCount() == 2); // true
