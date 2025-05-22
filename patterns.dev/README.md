@@ -115,3 +115,8 @@ export default function useDogImages() {
 $ cd patterns.dev/src/observable
 $ npx serve  # open localhost:3000
 ```
+
+### Mediator (Middleware) 패턴
+
+- UseCase: 다대다 관계를 단순하게
+- 라이브러리 예시: express middleware
