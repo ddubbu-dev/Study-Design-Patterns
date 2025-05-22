@@ -53,3 +53,52 @@ $ pnpm ts-node -- src/singleton-run-1
 ---
 
 - UseCase: 다른 객체의 프로퍼티를 상속, 프로토타입 체인을 통해 메서드 중복을 줄임
+
+### Container/Presentation 패턴
+
+---
+
+- UseCase: 비즈니스 로직&뷰 분리
+- Code Example: 1. Container/Presentation
+
+```js
+import React from "react";
+import DogImages from "./DogImages";
+
+// Container: 비즈니스 로직
+export default class DogImagesContainer extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      dogs: [],
+    };
+  }
+
+  componentDidMount() {
+    fetch("https://dog.ceo/api/breed/labrador/images/random/6")
+      .then((res) => res.json())
+      .then(({ message }) => this.setState({ dogs: message }));
+  }
+
+  render() {
+    // DogImages: 뷰 로직
+    return <DogImages dogs={this.state.dogs} />;
+  }
+}
+```
+
+- Code Example: Custom Hook
+
+```js
+export default function useDogImages() {
+  const [dogs, setDogs] = useState([]);
+
+  useEffect(() => {
+    fetch("https://dog.ceo/api/breed/labrador/images/random/6")
+      .then((res) => res.json())
+      .then(({ message }) => setDogs(message));
+  }, []);
+
+  return dogs;
+}
+```
