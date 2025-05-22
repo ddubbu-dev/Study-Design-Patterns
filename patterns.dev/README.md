@@ -12,7 +12,7 @@ $ pnpm ts-node -- {file_name}  // 파일 실행
 
 ## 시행착오
 
-### Singleton
+### Singleton 패턴
 
 ---
 
@@ -40,3 +40,16 @@ $ pnpm ts-node -- src/singleton-run-1
 
 - UseCase: 기본 동작을 유지한채 기능 추가 (로깅, 포매팅, 유효성 검사)
 - Q. Reflect 객체는 자주 사용하게 될까?
+
+### Provider 패턴 (React useContext)
+
+---
+
+- UseCase: 전역 데이터 공유 (e.g. UI 테마 공유) / (props-drilling 해결)
+- 단점: Context 참조하는 모든 컴포넌트 리렌더링
+
+### Prototype 패턴
+
+---
+
+- UseCase: 다른 객체의 프로퍼티를 상속, 프로토타입 체인을 통해 메서드 중복을 줄임
