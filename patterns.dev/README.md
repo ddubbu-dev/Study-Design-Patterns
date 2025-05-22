@@ -256,3 +256,21 @@ export function FlyOut(props) {
 ---
 
 - 객체와 메서드 분리
+
+## 자료
+
+https://refactoring.guru/ko/design-patterns/catalog
+
+### Builder 패턴
+
+- Q. SwiftUI 처럼 React에서는 해당 패턴을 사용할 수 없을까?
+- A. React props 기반이므로 오버 엔지니어링, 혹 class 정의.. 굳이?
+
+```swift
+// CustomPopupViewController.swift
+
+var contentBackgroundColor: UIColor? {
+    get { containerView.backgroundColor }
+    set { containerView.backgroundColor = newValue }
+}
+```
