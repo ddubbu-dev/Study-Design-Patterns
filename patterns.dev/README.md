@@ -186,3 +186,67 @@ function App() {
 ---
 
 - UseCase: 공통 속성은 공유
+
+### Factory 패턴 w. 함수
+
+---
+
+- Code Example
+
+```js
+const createUser = ({ firstName, lastName, email }) => ({
+  firstName,
+  lastName,
+  email,
+  fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  },
+});
+
+const user1 = new User({
+  firstName: "John",
+  lastName: "Doe",
+  email: "john@doe.com",
+});
+```
+
+### Compound 패턴
+
+---
+
+- UseCase: 컴포넌트 라이브러리 만들 때
+- Code Example
+
+```js
+import React from "react";
+import { FlyOut } from "./FlyOut";
+
+export default function FlyoutMenu() {
+  // 각 Sub Componnet 들은 공통 Context를 참조해 props drilling 피함
+  return (
+    <FlyOut>
+      <FlyOut.Toggle />
+      <FlyOut.List>
+        <FlyOut.Item>Edit</FlyOut.Item>
+        <FlyOut.Item>Delete</FlyOut.Item>
+      </FlyOut.List>
+    </FlyOut>
+  );
+}
+```
+
+- useContext 대신 props 주입하기 (WARN! 정해진 형식대로 사용해야함)
+
+```js
+export function FlyOut(props) {
+  const [open, toggle] = React.useState(false);
+
+  return (
+    <div>
+      {React.Children.map(props.children, (child) =>
+        React.cloneElement(child, { open, toggle })
+      )}
+    </div>
+  );
+}
+```
