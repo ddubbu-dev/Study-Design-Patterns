@@ -250,3 +250,9 @@ export function FlyOut(props) {
   );
 }
 ```
+
+### Command 패턴
+
+---
+
+- 객체와 메서드 분리
