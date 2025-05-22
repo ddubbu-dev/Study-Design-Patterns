@@ -1,8 +1,9 @@
 https://patterns-dev-kr.github.io/design-patterns/singleton-pattern/
 
 ```bash
-$ npm install -g ts-node typescript
-$ ts-node {file_name}.ts
+$ pnpm i
+$ pnpm test  // 테스트 실행
+$ pnpm run {file_name}.ts  // 파일 실행
 ```
 
 # 시행착오
