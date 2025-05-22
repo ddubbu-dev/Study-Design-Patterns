@@ -118,5 +118,65 @@ $ npx serve  # open localhost:3000
 
 ### Mediator (Middleware) 패턴
 
+---
+
 - UseCase: 다대다 관계를 단순하게
 - 라이브러리 예시: express middleware
+
+### HOC (Higher-Order Component) 패턴
+
+---
+
+- vs Hooks
+- 단점: 컴포넌트 트리가 깊어짐, props 이름 중복 가능성
+- UseCase: 접근성 체크 등 공통 로직 분리에 유리했지
+
+### Rendor Props 패턴
+
+---
+
+- UseCase: 공통 상태에 대한 재사용성 증가
+- Code Example
+  - Q. 여러 디자인시스템 레퍼런스에서 다음과 같은 구조를 갖는 이유려나?
+
+```js
+function Input(props) {
+  const [value, setValue] = useState("");
+
+  return (
+    <>
+      <input value={value} onChange={(e) => setValue(e.target.value)} />
+      {props.render(value)}
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <Input>
+      {(value) => (
+        <>
+          <Kelvin value={value} />
+          <Fahrenheit value={value} />
+        </>
+      )}
+    </Input>
+  );
+}
+```
+
+- vs 공통 상태 끌어올리기: 직관적이지만, 컴포넌트간 결합도가 높아짐
+
+```js
+function App() {
+  const [value, setValue] = useState("");
+
+  return (
+    <>
+      <Input value={value} onChange={setValue} />
+      <Kelvin value={value} />
+      <Fahrenheit value={value} />
+    </>
+  );
+}
+```
