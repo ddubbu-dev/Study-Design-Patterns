@@ -102,3 +102,16 @@ export default function useDogImages() {
   return dogs;
 }
 ```
+
+### Observer 패턴
+
+---
+
+- UseCase: 이벤트 발생시 Multi-Action 트리거 (로깅, 토스트 메시지)
+- 라이브러리 예시: RxJS
+- 실행방법
+
+```bash
+$ cd patterns.dev/src/observable
+$ npx serve  # open localhost:3000
+```

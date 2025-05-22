@@ -1,0 +1,54 @@
+<html>
+  <body>
+    <div id="root"></div>
+    <!-- Load React, Babel Script -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Load Observable Script -->
+    <script type="module" src="./class.js"></script>
+
+    <script type="text/babel">
+      const observable = {
+        observers: [],
+        subscribe(fn) {
+          this.observers.push(fn);
+        },
+        notify(data) {
+          this.observers.forEach((fn) => fn(data));
+        },
+      };
+
+      function handleClick() {
+        observable.notify("User clicked button!");
+      }
+
+      function handleToggle() {
+        observable.notify("User toggled switch!");
+      }
+
+      function logger(data) {
+        console.log(`${Date.now()} ${data}`);
+      }
+
+      function notify(data) {
+        alert("Click!");
+      }
+
+      observable.subscribe(logger);
+      observable.subscribe(notify);
+
+      function App() {
+        return (
+          <div className="App">
+            <button onClick={handleClick}>Click me!</button>
+          </div>
+        );
+      }
+
+      const rootElement = document.getElementById("root");
+      const root = ReactDOM.createRoot(rootElement);
+      root.render(<App />);
+    </script>
+  </body>
+</html>
